@@ -18,10 +18,13 @@ class Person:
 
 
 def main():
-    person = Person(first_name='Lukas', last_name='Weber',
-                    birthday=datetime(year=2002, month=12, day=4))
-
+    person = get_my_person()
     print_information_on_person(person)
+
+
+def get_my_person() -> Person:
+    return Person(first_name='Lukas', last_name='Weber',
+                  birthday=datetime(year=2002, month=12, day=4))
 
 
 def print_information_on_person(person: Person) -> None:
