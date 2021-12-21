@@ -44,14 +44,22 @@ def main():
 
 
 def input_radian_angle() -> RadianAngle:
-    message = 'Gib eine Nummer im Bogenmaß ein: '
-    wrong_input_message = 'Die Eingabe muss eine Nummer sein!'
+    decimal_number = input_decimal_number(message='Gib eine Nummer im Bogenmaß ein: ',
+                                          wrong_input_message='Die Eingabe muss eine Nummer sein!')
+    return RadianAngle(decimal_number)
 
-    while (input_number := input(message).strip().replace(',', '.')) and not is_decimal_number(string=input_number):
+
+def input_decimal_number(message: str, wrong_input_message: str) -> str:
+    while (decimal_number := input_with_decimal_number_format(message)) \
+            and not is_decimal_number(string=decimal_number):
         print(wrong_input_message)
         print()
 
-    return RadianAngle(input_number)
+    return decimal_number
+
+
+def input_with_decimal_number_format(message: str) -> str:
+    return input(message).strip().replace(',', '.')
 
 
 def is_decimal_number(string: str) -> bool:
