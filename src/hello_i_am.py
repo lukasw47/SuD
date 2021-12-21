@@ -17,14 +17,13 @@ class Person:
         return datetime.now().year - self.birthday.year
 
 
-def main():
-    person = get_my_person()
-    print_information_on_person(person)
+def print_information_on_me():
+    my_person = get_my_person()
+    print_information_on_person(person=my_person)
 
 
 def get_my_person() -> Person:
-    return Person(first_name='Lukas', last_name='Weber',
-                  birthday=datetime(year=2002, month=12, day=4))
+    return Person(first_name='Lukas', last_name='Weber', birthday=datetime(year=2002, month=12, day=4))
 
 
 def print_information_on_person(person: Person) -> None:
@@ -36,4 +35,4 @@ def print_information_on_person(person: Person) -> None:
 
 
 if __name__ == '__main__':
-    main()
+    print_information_on_me()
