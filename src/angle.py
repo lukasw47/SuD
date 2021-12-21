@@ -33,7 +33,7 @@ class DegreeAngle(float):
 
 
 def main():
-    radian_angle = prompt_user_for_radian_angle()
+    radian_angle = input_radian_angle()
     degree_angle = radian_angle.to_degree_angle()
 
     print()
@@ -43,18 +43,20 @@ def main():
     print()
 
 
-def prompt_user_for_radian_angle() -> RadianAngle:
+def input_radian_angle() -> RadianAngle:
     message = 'Gib eine Nummer im Bogenmaß ein: '
+    wrong_input_message = 'Die Eingabe muss eine Nummer sein!'
 
-    while (user_number := input(message).strip()) and not is_decimal_number(string=user_number):
-        print('Die Eingabe muss eine Nummer sein!')
+    while (input_number := input(message).strip().replace(',', '.')) and not is_decimal_number(string=input_number):
+        print(wrong_input_message)
         print()
 
-    return RadianAngle(user_number.replace(',', '.'))
+    return RadianAngle(input_number)
 
 
 def is_decimal_number(string: str) -> bool:
-    return bool(re.match(r'\d+([.,]\d*)?$', string))
+    decimal_number_pattern = r'\d+(\.\d*)?$'
+    return bool(re.match(decimal_number_pattern, string))
 
 
 if __name__ == '__main__':
