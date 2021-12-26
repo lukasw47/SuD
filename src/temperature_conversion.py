@@ -134,7 +134,7 @@ def input_temperature() -> Temperature:
         if not (raw_temperature_string := input(f'Bitte eine Temperatur angeben [{temperature_suffixes}]: ')):
             continue
 
-        temperature_string = raw_temperature_string.replace(',', '.', 1).strip()
+        temperature_string = preprocess_temperature_string(raw_string=raw_temperature_string)
 
         if not (temperature_type := get_temperature_type_for_string_if_exists(string=temperature_string)):
             print(f'Die Temperatur muss mit ({temperature_suffixes}) enden.')
@@ -145,6 +145,10 @@ def input_temperature() -> Temperature:
             continue
 
         return temperature_type.from_string(string=temperature_string)
+
+
+def preprocess_temperature_string(raw_string: str) -> str:
+    return '0' + raw_string.replace(',', '.', 1).strip()
 
 
 def get_temperature_type_for_string_if_exists(string: str) -> Union[Type[Temperature], None]:
