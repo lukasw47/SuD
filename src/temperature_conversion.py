@@ -157,7 +157,11 @@ def is_decimal_temperature(string: str) -> bool:
     string_without_suffix = remove_temperature_suffix(string)
     number_parts = string_without_suffix.split('.', 1)
 
-    return all(map(str.isdecimal, number_parts))
+    return all(map(string_is_digit_or_empty, number_parts))
+
+
+def string_is_digit_or_empty(string: str) -> bool:
+    return not string or string.isdigit()
 
 
 def remove_temperature_suffix(string: str) -> str:
