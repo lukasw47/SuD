@@ -144,7 +144,7 @@ def input_temperature() -> Temperature:
             print(f'Die Temperatur muss eine Zahl sein!')
             continue
 
-        return temperature_type.from_string(temperature_string)
+        return temperature_type.from_string(string=temperature_string)
 
 
 def get_temperature_type_for_string_if_exists(string: str) -> Union[Type[Temperature], None]:
